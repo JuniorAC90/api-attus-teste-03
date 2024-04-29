@@ -14,7 +14,7 @@ public class PessoaService {
     private PessoaRepository pessoaRepository;
 
     public List<Pessoa> findAll() {
-        List<Pessoa> listaDePessoas = pessoaRepository.findAll()
+        List<Pessoa> listaDePessoas = pessoaRepository.findAll();
         return listaDePessoas;
     }
 
