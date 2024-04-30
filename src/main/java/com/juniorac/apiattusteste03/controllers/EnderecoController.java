@@ -37,7 +37,7 @@ public class EnderecoController {
         return ResponseEntity.created(uri).body(endereco);
     }
 
-    @PutMapping
+    @PutMapping(value = "/{id}")
     public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco endereco) {
         endereco = enderecoService.update(id, endereco);
         return ResponseEntity.ok().body(endereco);
