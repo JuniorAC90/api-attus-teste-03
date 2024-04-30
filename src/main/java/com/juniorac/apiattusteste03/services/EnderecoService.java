@@ -27,4 +27,20 @@ public class EnderecoService {
         Endereco enderecoSalvo = enderecoRepository.save(endereco);
         return enderecoSalvo;
     }
+
+    public Endereco update(Long id, Endereco enderecoAtualizado) {
+        Endereco endereco = enderecoRepository.getReferenceById(id);
+        atualizaEndereco(endereco, enderecoAtualizado);
+        Endereco enderecoSalvo = enderecoRepository.save(endereco);
+        return enderecoSalvo;
+    }
+
+    private void atualizaEndereco(Endereco endereco, Endereco enderecoAtualizado) {
+        if (enderecoAtualizado.getLogradouro() != null) endereco.setLogradouro(enderecoAtualizado.getLogradouro());
+        if (enderecoAtualizado.getCep() != null) endereco.setCep(enderecoAtualizado.getCep());
+        if (enderecoAtualizado.getNumero() != null) endereco.setNumero(enderecoAtualizado.getNumero());
+        if (enderecoAtualizado.getCidade() != null) endereco.setCidade(enderecoAtualizado.getCidade());
+        if (enderecoAtualizado.getEstado() != null) endereco.setEstado(enderecoAtualizado.getEstado());
+        if (endereco.getPessoa() != null) endereco.setPessoa(endereco.getPessoa());
+    }
 }

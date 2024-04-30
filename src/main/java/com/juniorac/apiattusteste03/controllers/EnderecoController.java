@@ -36,4 +36,10 @@ public class EnderecoController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(endereco.getId()).toUri();
         return ResponseEntity.created(uri).body(endereco);
     }
+
+    @PutMapping
+    public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco endereco) {
+        endereco = enderecoService.update(id, endereco);
+        return ResponseEntity.ok().body(endereco);
+    }
 }
