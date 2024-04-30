@@ -1,9 +1,6 @@
 package com.juniorac.apiattusteste03.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -18,17 +15,20 @@ public class Endereco {
     private String numero;
     private String cidade;
     private String estado;
+    @ManyToOne
+    private Pessoa pessoa;
 
     public Endereco() {
     }
 
-    public Endereco(Long id, String logradouro, String cep, String numero, String cidade, String estado) {
+    public Endereco(Long id, String logradouro, String cep, String numero, String cidade, String estado, Pessoa pessoa) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
+        this.pessoa = pessoa;
     }
 
     public Long getId() {
@@ -77,6 +77,14 @@ public class Endereco {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     @Override

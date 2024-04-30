@@ -35,4 +35,5 @@ public class PessoaController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pessoa.getId()).toUri();
         return ResponseEntity.created(uri).body(pessoa);
     }
+
 }

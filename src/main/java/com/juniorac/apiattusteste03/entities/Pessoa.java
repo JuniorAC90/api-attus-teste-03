@@ -1,11 +1,10 @@
 package com.juniorac.apiattusteste03.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,6 +15,8 @@ public class Pessoa {
     private Long id;
     private String nomeCompleto;
     private LocalDate dataNascimento;
+    @OneToMany
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public Pessoa() {
     }
@@ -48,6 +49,10 @@ public class Pessoa {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
     }
 
     @Override
