@@ -17,6 +17,7 @@ public class Endereco {
     private String estado;
     @ManyToOne
     private Pessoa pessoa;
+    private Boolean enderecoPrincipal;
 
     public Endereco() {
     }
@@ -85,6 +86,14 @@ public class Endereco {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Boolean getEnderecoPrincipal() {
+        return enderecoPrincipal;
+    }
+
+    public void setEnderecoPrincipal(Boolean enderecoPrincipal) {
+        this.enderecoPrincipal = enderecoPrincipal;
     }
 
     @Override

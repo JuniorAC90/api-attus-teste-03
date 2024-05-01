@@ -25,6 +25,7 @@ public class EnderecoService {
 
     public Endereco insert(Endereco endereco) {
         Endereco enderecoSalvo = enderecoRepository.save(endereco);
+        if (enderecoSalvo.getEnderecoPrincipal()) endereco.getPessoa().setIdEnderecoPrincipal(enderecoSalvo.getId());
         return enderecoSalvo;
     }
 
@@ -41,6 +42,8 @@ public class EnderecoService {
         if (enderecoAtualizado.getNumero() != null) endereco.setNumero(enderecoAtualizado.getNumero());
         if (enderecoAtualizado.getCidade() != null) endereco.setCidade(enderecoAtualizado.getCidade());
         if (enderecoAtualizado.getEstado() != null) endereco.setEstado(enderecoAtualizado.getEstado());
-        if (endereco.getPessoa() != null) endereco.setPessoa(endereco.getPessoa());
+        if (endereco.getPessoa() != null) endereco.setPessoa(enderecoAtualizado.getPessoa());
+        if (endereco.getEnderecoPrincipal() != null) endereco.setEnderecoPrincipal(enderecoAtualizado.getEnderecoPrincipal());
+        if (endereco.getEnderecoPrincipal()) endereco.getPessoa().setIdEnderecoPrincipal(endereco.getId());
     }
 }

@@ -17,6 +17,7 @@ public class Pessoa {
     private LocalDate dataNascimento;
     @OneToMany
     private List<Endereco> enderecos = new ArrayList<>();
+    private Long idEnderecoPrincipal;
 
     public Pessoa() {
     }
@@ -53,6 +54,14 @@ public class Pessoa {
 
     public List<Endereco> getEnderecos() {
         return enderecos;
+    }
+
+    public Long getIdEnderecoPrincipal() {
+        return idEnderecoPrincipal;
+    }
+
+    public void setIdEnderecoPrincipal(Long idEnderecoPrincipal) {
+        this.idEnderecoPrincipal = idEnderecoPrincipal;
     }
 
     @Override
