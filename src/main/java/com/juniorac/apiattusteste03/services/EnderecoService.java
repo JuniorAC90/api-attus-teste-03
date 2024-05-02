@@ -45,5 +45,8 @@ public class EnderecoService {
         if (endereco.getPessoa() != null) endereco.setPessoa(enderecoAtualizado.getPessoa());
         if (endereco.getEnderecoPrincipal() != null) endereco.setEnderecoPrincipal(enderecoAtualizado.getEnderecoPrincipal());
         if (endereco.getEnderecoPrincipal()) endereco.getPessoa().setIdEnderecoPrincipal(endereco.getId());
+        for (Endereco e : endereco.getPessoa().getEnderecos()) {
+            if (e.getId() != endereco.getPessoa().getIdEnderecoPrincipal()) e.setEnderecoPrincipal(false);
+        }
     }
 }
