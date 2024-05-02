@@ -1,8 +1,10 @@
 package com.juniorac.apiattusteste03.controllers;
 
 import com.juniorac.apiattusteste03.entities.Endereco;
+import com.juniorac.apiattusteste03.entities.Pessoa;
 import com.juniorac.apiattusteste03.repositories.EnderecoRepository;
 import com.juniorac.apiattusteste03.services.EnderecoService;
+import com.juniorac.apiattusteste03.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/enderecos")
 public class EnderecoController {
+
+    @Autowired
+    private PessoaService pessoaService;
 
     @Autowired
     private EnderecoService enderecoService;
@@ -30,8 +35,11 @@ public class EnderecoController {
         return ResponseEntity.ok().body(endereco);
     }
 
-    @PostMapping
-    public ResponseEntity<Endereco> insert(@RequestBody Endereco endereco) {
+    @PostMapping(value = "/pessoas/{id}")
+    public ResponseEntity<Endereco> insert(@PathVariable Long id, @RequestBody Endereco endereco) {
+        Pessoa pessoa = pessoaService.findById(id);
+        endereco.setPessoa(pessoa);
+        endereco.getPessoa().getEnderecos().add(endereco);
         endereco = enderecoService.insert(endereco);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(endereco.getId()).toUri();
         return ResponseEntity.created(uri).body(endereco);

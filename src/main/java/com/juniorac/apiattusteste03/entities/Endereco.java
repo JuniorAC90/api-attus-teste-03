@@ -1,5 +1,6 @@
 package com.juniorac.apiattusteste03.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -16,8 +17,9 @@ public class Endereco {
     private String cidade;
     private String estado;
     @ManyToOne
+    @JsonIgnore
     private Pessoa pessoa;
-    private Boolean enderecoPrincipal;
+    private Boolean enderecoPrincipal = true;
 
     public Endereco() {
     }
